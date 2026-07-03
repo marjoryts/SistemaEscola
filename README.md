@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SistemaEscola
 
-## Getting Started
+Controle de reserva de dispositivos para instituições de ensino.
 
-First, run the development server:
+## O problema
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Escolas que disponibilizam computadores e tablets para professores usarem em sala de aula enfrentam um desafio simples: não há registro de quem pegou o quê, quando, e em que estado o equipamento estava. Um papel na sala dos professores resolve parcialmente, mas dados se perdem, não há visibilidade para a coordenação, e equipamentos danificados viram dor de cabeça.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## O que o sistema faz
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+O SistemaEscola centraliza o registro de reservas de dispositivos. Professores fazem login, informam quantos computadores e tablets estão pegando, quantos estavam com problemas, e registram observações. A coordenação (admin) tem uma visão panorâmica de todas as reservas, consegue alterar status (pendente, confirmado, concluído, cancelado) e manter um histórico confiável.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Principais recursos
 
-## Learn More
+- **Autenticação** — Professores e administradores acessam o sistema com email e senha; cada um vê apenas o que precisa.
+- **Reserva de dispositivos** — Ao pegar equipamentos, o professor registra a data, horário, quantidades (disponíveis e com defeito) e observações.
+- **Histórico do professor** — Cada professor acompanha as próprias reservas e pode excluir registros.
+- **Dashboard administrativo** — Visão geral de todas as reservas da instituição, com filtros por status e ações para gerenciar cada uma.
+- **QR code na entrada** — A página inicial exibe um QR code com o link do sistema para acesso rápido pelo celular.
 
-To learn more about Next.js, take a look at the following resources:
+## Fluxo de uso
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. O professor acessa o sistema pelo link ou escaneia o QR code.
+2. Faz login ou cria uma conta (novos usuários já nascem como professores).
+3. Na página inicial, escolhe entre fazer uma nova reserva ou ver o histórico.
+4. Ao reservar, informa os dados da retirada — o sistema salva tudo vinculado ao professor.
+5. O admin acompanha as reservas em tempo real, atualiza status conforme o fluxo e mantém o controle geral.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Stack
 
-## Deploy on Vercel
+Next.js · React · TypeScript · Tailwind CSS · Supabase (autenticação + banco de dados)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Status
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Em desenvolvimento ativo. O schema do banco e as regras de segurança (RLS) já estão definidos, e as funcionalidades principais implementadas.
